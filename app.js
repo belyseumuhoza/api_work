@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const app = express();
-const port = 3000;
+const port = 10000;
 
 app.use(express.json()); // ✅ Fix: Parse JSON bodies
 
