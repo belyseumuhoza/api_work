@@ -1,20 +1,19 @@
 const express = require('express');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const app = express();
 const port = 3000;
 
 app.use(express.json()); // ✅ Fix: Parse JSON bodies
 
 const SECRET_KEY = 'your-secret-key'; // Replace with a strong secret in production
-
 // MySQL connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '', // Add your password if any
-  database: 'ecommercee'
+  host: 'mysql-umuhoza.alwaysdata.net',
+  user: 'umuhoza',
+  password: '_Belyse123!', // Add your password if any
+  database: 'umuhoza_ecommerce'
 });
 
 db.connect(err => {
@@ -58,7 +57,7 @@ app.post('/login', (req, res) => {
     if (!isMatch)
       return res.status(401).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.id }, SECRET_KEY);
     res.json({ token });
   });
 });
